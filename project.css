@@ -1,0 +1,126 @@
+html {
+  overflow: scroll;
+}
+
+body {
+  margin:0;
+}
+
+#navbar {
+    z-index: 2;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+#navList {
+    float: left;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+#Download {
+  background-color: black;
+  height: 300px;
+  color: white;
+  font-family: Times;
+  font-size: 50px;
+  padding-top: 0.1%;
+  text-align: left;
+  padding-left: 3%;
+}
+
+li a {
+}
+
+li a:hover {
+    background-color: #111;
+}
+
+a {
+  color:inherit;
+  text-decoration: none;
+}
+.btn {
+  background-color: DodgerBlue;
+  margin-left: 38%;
+  text-align: center;
+  border: none;
+  border-radius: 18px;
+  color: white;
+  padding: 20px 55px;
+  cursor: pointer;
+  font-size: 20px;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+
+}
+/* Darker background on mouse-over */
+.btn:hover {
+  background-color: RoyalBlue;
+}
+
+#Tutorial {
+  margin-left: 15%;
+  margin-right: 15%;
+  font-family: Verdana;
+  padding-bottom: 3%;
+  font-size: 20px;
+  background-color: white;
+  color: black;
+}
+
+#tutorialList {
+  color: #333;
+}
+
+#tutItem {
+  margin: 0 0 5px 0;
+  position: relative;
+}
+
+#tutImage {
+  width: 90%;
+  height:400px;
+  position: relative;
+}
+#title {
+  color: white;
+  background-image: url("https://png.pngtree.com/thumb_back/fh260/back_pic/00/01/54/555604115c64ab3.jpg");
+  font-size: 50px;
+  height: 175px;
+  margin: 0px;
+  padding-top: 1%;
+  padding-bottom: 2%;
+  text-align: center;
+  width: 100%;
+  font-family: courier;
+}
+
+#statement {
+  color: white;
+  background-color: black;
+  font-size: 25px;
+  height: 50px;
+  padding-top: 0.1%;
+  padding-bottom: 0.1%;
+  text-align: center;
+  font-style: italic;
+}
+#mission {
+  color: white;
+  background-color: black;
+  font-size: 20px;
+  height: 250px;
+  padding-top: 3%;
+  text-align: left;
+  padding-right: 3%;
+  padding-left: 3%;
+}
