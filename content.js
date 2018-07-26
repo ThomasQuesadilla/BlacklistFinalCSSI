@@ -1,12 +1,24 @@
-var redactionColor;
+var basic = /\b(rape|suicide|suicidal|violence|violent|gun|guns|murder|commit suicide|rapist|blood)\b/gi;
+var military = /\b(gunshots|terrorism|war|war on terror|casualty|explosion|bombing)\b/gi;
+var alcohol = /\b(liqour|whiskey|drunk|beer|wine|alcohol|jack daniels|tequila|binge drinking|Lacquer|vodka)\b/gi;
+var filters = {
+  'basic' : basic,
+  'military' : military,
+  'alcohol' : alcohol
+};
 
-function censor() {
-  var elements = document.getElementsByTagName('*');
-  chrome.storage.sync.get('redactionColor', function(obj){
-    redactionColor = String(obj.redactionColor) || 'black';
-    console.log('redactionColor is set to ' + redactionColor);
+function matchFilters(selectedFilters, text) {
+  for (filtername of selectedFilters) {
+    if (text.match(filters[filtername])) {
+      return true;
+    }
+  }
+  return false;
+}
 
-  //var color = document.getElementById('color').value;
+function censor(redactionColor, checkedCategory, elements) {
+  console.log('checkedCategory is set to ' + checkedCategory);
+  selectedFilters = ('' + checkedCategory).split(',');
 
   for (var i = 0; i < elements.length; i++) {
       var element = elements[i];
@@ -17,18 +29,17 @@ function censor() {
           if (node.nodeType === 3) {
               var text = node.nodeValue;
 
-              if (text.match(/rape|suicide|suicidal|violence|violent|gun|guns|murder|commit suicide|rapist|blood/gi)) {
-
+              if (matchFilters(selectedFilters, text)) {
+                //if (node.offsetParent === null) continue;
                 var replace = "<span style='background-color:"+ redactionColor + "; color:" + redactionColor + "'>"
-                // <!--background-color: " + redactionColor + ";-->
-                 // if (redactionColor === 'white') {
-                 //   var replace = '<span style="background-color: white; color: white;">';
-                 //   console.log('it is white')
-                 // }
-                 // else {
-                 //  var replace = '<span style="background-color: black; color: black;">';
-                 //  console.log('it is black')
-                 //     }
+                // if (redactionColor === 'white') {
+                //    var replace = '<span style="background-color: white; color: white;">';
+                //    console.log('it is white')
+                //  }
+                //  else {
+                //   var replace = '<span style="background-color: black; color: black;">';
+                //   console.log('it is black')
+                // }
                 for (var i = 0; i < text.length; i++) {
                   replace += 'X';
                 }
@@ -44,14 +55,23 @@ function censor() {
           }
       }
   }
-});}
-console.log(redactionColor)
- censor();
- setInterval(censor, 1000);
-// function popUp() {
-//     if (confirm("Press a button!")) {
-//       } else {
-//         txt = "You pressed Cancel!";
-//         }
-//
-// }
+}
+
+
+var elements = document.getElementsByTagName('*');
+
+function runEverything() {
+  chrome.storage.sync.get(
+    'redactionColor',
+    function(obj){
+      var redactionColor = obj.redactionColor || 'white';
+      console.log('redactionColor is set to ' + redactionColor);
+      chrome.storage.sync.get(
+        'checkedCategory',
+        function(obj){
+          censor(redactionColor, obj.checkedCategory, elements)
+        });
+    });
+}
+
+setInterval(runEverything, 1000);
