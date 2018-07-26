@@ -1,0 +1,20 @@
+{
+"manifest_version": 2,
+    "name": "Options Test",
+    "description": "Giving content control back to the user. Currently censors text-based content users do not wish to view.",
+    "version": "1.0",
+    "permissions": ["storage"],
+    "options_ui": {
+      "page": "options.html",
+      "open_in_tab": true },
+
+    "content_scripts": [
+        {
+            "matches": ["*://*/*"],
+
+            "js": ["content.js"],
+
+            "run_at": "document_end"
+        }
+    ]
+}
