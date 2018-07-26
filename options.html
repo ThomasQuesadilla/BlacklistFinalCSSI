@@ -1,14 +1,14 @@
-<!DOCTYPE html>
+
 <html>
 <head><title>My Test Extension Options</title></head>
 <body>
 
-Redaction Color:
-<select id="color-select">
- <option value="black">black</option>
- <option value="white">white</option>
- <option id="custom-select" value="custom">custom</option>
-</select>
+  Redaction Color:
+  <select id="color-select">
+    <option value="white">white</option>
+   <option value="black">black</option>
+   <option id="custom-select" value="custom">custom</option>
+  </select>
 
 <script src="jscolor.js"></script>
 
@@ -22,14 +22,34 @@ Redaction Color:
   <input id="colorPicker" class="jscolor">
 </div>
 
-<!--<label>
-  <input type="checkbox" id="like">
-  I like colors.
-</label> -->
+<p>
+  <br>
+  <fieldset>
+      <legend>Select Categories to Block</legend>
+      <div>
+
+          <input type="checkbox" id="basic" name="feature[]"
+                 value="basic" />
+          <label for="basic">General Trauma</label>
+      </div>
+
+      <div>
+          <input type="checkbox" id="military" name="feature[]"
+                 value="military" />
+          <label for="military">Military PTSD</label>
+      </div>
+
+      <div>
+          <input type="checkbox" id="alcohol" name="feature[]"
+                 value="alcohol" />
+          <label for="alcohol">Alcohol Abuse</label>
+      </div>
+  </fieldset>
+<br>
 
 <div id="status"></div>
 <button id="save">Save</button>
 
-<script src="options.js"></script>]
+<script src="options.js"></script>
 </body>
 </html>
