@@ -1,10 +1,12 @@
-var basic = /\b(rape|suicide|suicidal|violence|violent|gun|guns|murder|commit suicide|rapist|blood)\b/gi;
-var military = /\b(gunshots|terrorism|war|war on terror|casualty|explosion|bombing)\b/gi;
-var alcohol = /\b(liqour|whiskey|drunk|beer|wine|alcohol|jack daniels|tequila|binge drinking|Lacquer|vodka)\b/gi;
+var basic = /\b(#)?(rape|suicide|suicidal|violence|violent|gun|guns|murder|commit suicide|blood|homicide|kill|corpse|molest|sex offender|sex offense|shoot|fatal|fatality|fatalies|death|sexual assault|gunned down)(ing|er|s|ers|ist|ists|ed)?\b/gi;
+var military = /\b(#)?(gunshot|terrorism|war|war on terror|casualty|explosion|bomb|ied|terrorist|gun|gunman)(ing|er|s|ers|ed)?\b/gi;
+var alcohol = /\b(#)?(liqour|whiskey|drunk|beers|wine|alcohol|jack daniel|tequila|binge drinking|Lacquer|vodka|social drinking)(ing|er|s|ers|ed|'s)?\b/gi;
+var parentals = /\b(#)?(shit|fuck|cunt|bitch|nigg|drugs|alcohol|sex|porn|sexual)(ing|er|s|ers|ed|'s)?/gi;
 var filters = {
   'basic' : basic,
   'military' : military,
-  'alcohol' : alcohol
+  'alcohol' : alcohol,
+  'parentals' : parentals
 };
 
 function matchFilters(selectedFilters, text) {
@@ -41,7 +43,7 @@ function censor(redactionColor, checkedCategory, elements) {
                 //   console.log('it is black')
                 // }
                 for (var i = 0; i < text.length; i++) {
-                  replace += 'X';
+                  replace += '-';
                 }
                 replace +='</span>';
 
@@ -74,4 +76,6 @@ function runEverything() {
     });
 }
 
+runEverything();
+setTimeout(runEverything, 300);
 setInterval(runEverything, 1000);
