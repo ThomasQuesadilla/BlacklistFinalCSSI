@@ -18,9 +18,11 @@ function update(picker) {
 function colorSelect(event) {
   if (event.target.value == "custom") {
     document.getElementById('colorStuff').style.display = "block";
+    document.getElementById('colorPicker').jscolor.show()
   }
   else {
     document.getElementById('colorStuff').style.display = "none";
+    document.getElementById('colorPicker').jscolor.hide()
   }
 }
 
